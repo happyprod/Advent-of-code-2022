@@ -1,11 +1,15 @@
 <?php
 
-$n = 0; // Contador
-$tamm = 0; //tamanho
+$file = './input.txt'; //Arquivo
 
-do {
-    $temp = "";
-    $temp = readline(); // Lê
+$content = file_get_contents($file); // Lê o conteúdo do arquivo
+$lines = explode("\n", $content); // Divide o conteúdo em linhas
+
+$n = 0; // Contador
+$tamm = 0; // Tamanho
+
+foreach ($lines as $line) {
+    $temp = $line;
     $flag = 0;
 
     if ($temp !== "") { // Verifica se o input não está vazio
@@ -25,25 +29,12 @@ do {
                 }
             }
         }
-        $n = $n + 1; // Incrementa o contador principal
+        $n = $n + 1; // Incrementa o contador
     }
-} while ($temp !== ""); // Continua o loop até que uma linha vazia seja inserida
+}
 
 for ($i = 0; $i < $n; $i++) {
     $array3[$i] = array_unique($array3[$i]); // Remove elementos duplicados do array $array3
-}
-
-// Mostra os resultados
-for ($i = 0; $i < $n; $i++) {
-    echo 'Mochila ' . ($i + 1) . ": " . $temp2[$i] . $temp3[$i];
-    echo "\n";
-    echo 'Compartimento 1: ' . implode(", ", $array[$i]);
-    echo "\n";
-    echo 'Compartimento 2: ' . implode(", ", $array2[$i]);
-    echo "\n";
-    echo 'Repetidos: ' . implode(", ", $array3[$i]);
-    echo "\n";
-    echo "\n";
 }
 
 $minusculas = 0; // Variável para armazenar a soma das prioridades dos caracteres minúsculos
