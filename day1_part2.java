@@ -55,7 +55,7 @@ public class day1_part2 {
             soma = soma + totalcal.get(i);
         }
 
-        // Imprimir a soma total das três maiores somas de calorias
+        // Output da soma total das três maiores somas de calorias
         System.out.println(soma);
     }
 }
