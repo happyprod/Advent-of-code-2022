@@ -28,12 +28,12 @@
         $c3 = $temp[$i][2];
 
         // Separa tudo por elementos e remove os repetidos
-        $set1 = array_unique(str_split($c1));
-        $set2 = array_unique(str_split($c2));
-        $set3 = array_unique(str_split($c3));
+        $cc1 = array_unique(str_split($c1));
+        $cc2 = array_unique(str_split($c2));
+        $cc3 = array_unique(str_split($c3));
 
         // Vê qual é o elemente igual
-        $clean = array_intersect($set1, $set2, $set3);
+        $clean = array_intersect($cc1, $cc2, $cc3);
 
         foreach ($clean as $value) {
             if (in_array($value, $alfmai)) { // Verifica se o valor está no array de caracteres maiúsculos
@@ -51,5 +51,6 @@
     echo "Soma dos caracteres minúsculos: " . $minusculas . "\n"; // Mostra a soma das prioridades dos caracteres minúsculos
     echo "Soma dos caracteres maiúsculos: " . $maiusculas . "\n"; // Mostra a soma das prioridades dos caracteres maiúsculos
     echo "Total: " . $total . "\n"; // Mostra a soma total das prioridades
+
 
 ?>
