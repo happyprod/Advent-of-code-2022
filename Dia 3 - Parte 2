@@ -1,0 +1,55 @@
+<?php
+    error_reporting(0);
+    $file = './input.txt'; // Arquivo
+
+    $content = file_get_contents($file); // Lê o conteúdo do arquivo
+    $lines = explode("\n", $content); // Divide o conteúdo em linhas
+
+    $n = 0; // Contador
+    $i = 0;
+
+    foreach ($lines as $line) {
+        if ($i % 3 == 0 || $i == 0) {
+            $n = $n + 1;
+            $i = 0;
+        }
+        $temp[$n][$i] = $line;
+        $i++;
+    }
+
+    $minusculas = 0; // Variável para armazenar a soma das prioridades dos caracteres minúsculos
+    $maiusculas = 0; // Variável para armazenar a soma das prioridades dos caracteres maiúsculos
+    $alfmin = range('a', 'z'); // Array com os caracteres minúsculos
+    $alfmai = range('A', 'Z'); // Array com os caracteres maiúsculos
+
+    for ($i = 0; $i < $n; $i++) {
+        $c1 = $temp[$i][0];
+        $c2 = $temp[$i][1];
+        $c3 = $temp[$i][2];
+
+        // Separa tudo por elementos e remove os repetidos
+        $set1 = array_unique(str_split($c1));
+        $set2 = array_unique(str_split($c2));
+        $set3 = array_unique(str_split($c3));
+
+        // Vê qual é o elemente igual
+        $clean = array_intersect($set1, $set2, $set3);
+
+        foreach ($clean as $value) {
+            if (in_array($value, $alfmai)) { // Verifica se o valor está no array de caracteres maiúsculos
+                $prioridade = ord($value) - 38; // Calcula a prioridade do caractere maiúsculo
+                $maiusculas += $prioridade; // Adiciona a prioridade à soma das prioridades dos caracteres maiúsculos
+            } elseif (in_array($value, $alfmin)) { // Verifica se o valor está no array de caracteres minúsculos
+                $prioridade = ord($value) - 96; // Calcula a prioridade do caractere minúsculo
+                $minusculas += $prioridade; // Adiciona a prioridade à soma das prioridades dos caracteres minúsculos
+            }
+        }
+    }
+
+    $total = $minusculas + $maiusculas; // Calcula a soma total das prioridades
+
+    echo "Soma dos caracteres minúsculos: " . $minusculas . "\n"; // Mostra a soma das prioridades dos caracteres minúsculos
+    echo "Soma dos caracteres maiúsculos: " . $maiusculas . "\n"; // Mostra a soma das prioridades dos caracteres maiúsculos
+    echo "Total: " . $total . "\n"; // Mostra a soma total das prioridades
+
+?>
