@@ -1,0 +1,57 @@
+<?php
+
+    $file = './input.txt'; //Arquivo
+
+    $content = file_get_contents($file); // Lê o conteúdo do arquivo
+    $lines = explode("\n", $content); // Divide o conteúdo em linhas
+
+    $flag = 0;
+
+    foreach ($lines as $line)
+    {
+
+        $tam = strlen($line);
+
+        for ($i = 0; $i < $tam; $i++)
+        {
+            for ($j = $i; $j < $tam; $j++)
+            {
+                $temp = substr($line, $j, 1);  
+
+                    if (isset($res))
+                    {
+                        if (str_contains($res, $temp))
+                        {
+                            unset($res);
+                            break;
+                        } else {
+                            $res = $res . $temp;
+                        }
+                    } else {
+                        $res = $temp;
+                    }
+
+                    if (isset($res))
+                    {
+                        if (strlen($res) == 4)
+                        {
+                            $resultado = $j;
+                            $flag = 1;
+                            break;
+                        }
+                    }
+                    
+            }
+            if ($flag == 1)
+            {
+                break;
+            }
+        }
+
+        echo $resultado+1 . "\n";
+        unset($resultado);
+        unset($res);
+        $flag = 0;
+    }
+
+?>
